@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+<form th:action="@{/users}" th:object="${user}" method="POST"> <!--Когда вы указываете th:object="${user}", вы сообщаете Thymeleaf, что все поля ввода внутри этой формы будут связаны с объектом user. Это означает, что вы можете использовать свойства этого объекта в полях ввода.-->
+    <label for="name">Name</label>
+    <input type="text" id="name" th:field="*{name}" required><!--th:field в Thymeleaf используется для связывания HTML-элементов формы с полями объекта, который передается из контроллера.-->
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    <br>
+    <label for="email">Email</label>
+    <input type="text" id="email" th:field="*{email}" required>
+    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+    <br>
+    <label for="age">Age</label>
+    <input type="text" id="age" th:field="*{age}" required>
+    <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+    <br>
+    <button type="submit">create user</button>
+</form>
+</body>
+</html>
